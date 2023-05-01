@@ -71,17 +71,9 @@ function addSpiritImage(img) {
 	});
 }
 
-//Load in images when dragged and dropped in.
-//Based on https://stackoverflow.com/a/73555394
-canvas.on('drop', function(event) {
-	//Prevent the browser's default behaviour of opening the file.
-	event.e.stopPropagation();
-	event.e.stopImmediatePropagation();
-	event.e.preventDefault();
-	
-	//Use DataTransfer interface to access the file(s).
-	if(event.e.dataTransfer.files.length > 0){
-		var files = event.e.dataTransfer.files;
+//A wrapper around the above function that takes a list of files objects.
+function handleSpiritImageEvent(files) {
+	if(files.length > 0){
 		for (var i = 0, f; f = files[i]; i++) {
 			//Only process image files.
 			if (f.type.match('image.*')) {
@@ -95,6 +87,23 @@ canvas.on('drop', function(event) {
 			}
 		}
 	}
+}
+
+//Load in images when selected with the file browser input.
+document.getElementById('uploadImage').addEventListener("change", function(e) {
+	handleSpiritImageEvent(e.target.files);
+});
+
+//Load in images when dragged and dropped in.
+//Based on https://stackoverflow.com/a/73555394
+canvas.on('drop', function(event) {
+	//Prevent the browser's default behaviour of opening the file.
+	event.e.stopPropagation();
+	event.e.stopImmediatePropagation();
+	event.e.preventDefault();
+	
+	//Use DataTransfer interface to access the file(s).
+	handleSpiritImageEvent(event.e.dataTransfer.files);
 });
 
 //A function to save the image, called by the HTML button.
