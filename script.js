@@ -19,17 +19,26 @@ var clip2Y = 690;
 
 var imageName = 'marker.png'; //The file name to download as.
 
-//Set up the blank marker image.
-fabric.Image.fromURL('blank-spirit-marker.png', function(img) {
-	img.set('left', 0).set('top', 0);
-	img.set('width', canvasWidth).set('height', canvasHeight);
-	img.set('selectable', false);
-	img.set('evented', false); //To ensure you never try to interact with it, and can select/move things behind it.
-	canvas.add(img);
-});
+
+//Clear the existing spirit image (to make room for a new one).
+function clearCanvas() {
+	canvas.clear();
+	
+	//Set up the blank marker image.
+	fabric.Image.fromURL('blank-spirit-marker.png', function(img) {
+		img.set('left', 0).set('top', 0);
+		img.set('width', canvasWidth).set('height', canvasHeight);
+		img.set('selectable', false);
+		img.set('evented', false); //To ensure you never try to interact with it, and can select/move things behind it.
+		canvas.add(img);
+	});
+}
+
+clearCanvas(); //First set up of the canvas.
 
 //A callback function for adding spirit images to the canvas.
 function addSpiritImage(img) {
+	clearCanvas();
 	img.scaleToHeight(clipHeight); //Default to filling the clipping area.
 	img.set('left', clip1X).set('top', clip1Y); //Start in the clipping area.
 	//Clip to the area inside the upper-right hole.
