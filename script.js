@@ -90,9 +90,9 @@ function handleSpiritImageEvent(files) {
 }
 
 //Load in images when selected with the file browser input.
-document.getElementById('uploadImage').addEventListener("change", function(e) {
-	handleSpiritImageEvent(e.target.files);
-});
+function uploadImage() {
+	handleSpiritImageEvent(document.getElementById('fileSelector').files);
+}
 
 //Load in images when dragged and dropped in.
 //Based on https://stackoverflow.com/a/73555394
