@@ -12,9 +12,40 @@
 	</head>
 	
 	<body>
-		<canvas id="mainCanvas" width="1332" height="1332"></canvas>
-		
-		<button id="saveImage" onclick="saveImage();">Save Image</button>
+		<div style="display: flex;">
+			<div>
+				<canvas id="mainCanvas" width="1332" height="1332"></canvas>
+			</div>
+			<div>
+				<h2>Spirit Marker Maker</h2>
+				<p>For the MJ & iakona TTS mod.</p>
+				
+				<button id="saveImage" onclick="saveImage();">Save Image</button>
+				
+				<h4>How to use</h4>
+				<ol>
+					<li><p>
+						Drag an image of your spirit onto the blank marker image left.
+					</p></li>
+					<li><p>
+						Move/resize the image to fit in the upper-right hole.
+						It will be automatically mirrored in the lower-left hole.
+					</p></li>
+					<li><p>
+						Save the image using the button above.
+					</p></li>
+					<li><p>
+						In TTS, make a copy of an existing spirit marker.
+						Rename the copy with your spirit's name.
+					</p></li>
+					<li><p>
+						Right click the spirit marker and select "Custom".
+						Change the "Diffuse/Image" to the image you saved from here.
+						If TTS asks whether you'd like to update matching custom objects, select "Cancel".
+					</p></li>
+				</ol>
+			</div>
+		</div>
 		
 		<script src="script.js"></script>
 	</body>
